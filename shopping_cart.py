@@ -52,7 +52,7 @@ while True:
     selected_id = input("Please input a product identifier: ") #"9" (string version of input)
     if selected_id == "DONE":
         break
-    elif float(selected_id) < 21:
+    elif 0 < float(selected_id) < 21:
         selected_ids.append(selected_id)
     else:
         #matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
@@ -89,6 +89,7 @@ else:
     plurality_check = "SELECTED PRODUCT: "
 print(plurality_check)
 
+#The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $3.50, etc.)
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
@@ -96,23 +97,21 @@ for selected_id in selected_ids:
     print("... " + matching_product["name"] + " (" + str(to_usd(matching_product["price"])) + ")")
 
 print("---------------------------------")
-print("SUBTOTAL: " + str(total_price))
+print("SUBTOTAL: " + str(to_usd(total_price)))#The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. $19.47), calculated as the sum of their prices
 
-tax_total = total_price * 0.0875 #to hold tax value
+tax_total = total_price * 0.0875 #The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75% (for the purposes of this project, groceries are not exempt from sales tax)
 print("TAX: " + str(to_usd(tax_total)))
 
 total_total = tax_total + total_price #to hold total total value
-print("TOTAL: " + str(to_usd(total_total)))
+print("TOTAL: " + str(to_usd(total_total)))#The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
 print("---------------------------------")
 
-print("THANK YOU, STAY SAFE AND SEE YOU AGAIN SOON!")
+print("THANK YOU, STAY SAFE AND SEE YOU AGAIN SOON!")#A friendly message thanking the customer and/or encouraging the customer to shop again
 print("---------------------------------")
 
 
-#The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $3.50, etc.)
-#The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. $19.47), calculated as the sum of their prices
-#The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75% 
-# (for the purposes of this project, groceries are not exempt from sales tax)
 
-#The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
-#A friendly message thanking the customer and/or encouraging the customer to shop again
+
+
+
+
