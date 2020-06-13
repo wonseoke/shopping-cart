@@ -81,11 +81,19 @@ dt_string = now.strftime("%Y-%m-%d %H:%M %p")
 print("CHECKOUT AT: ", dt_string)	
 print("---------------------------------")
 
+
+plurality_check = 0
+if len(selected_ids) > 1:
+    plurality_check = "SELECTED PRODUCTS: "
+else:
+    plurality_check = "SELECTED PRODUCT: "
+print(plurality_check)
+
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price += matching_product["price"]
-    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+    print("... " + matching_product["name"] + " (" + str(to_usd(matching_product["price"])) + ")")
 
 print("---------------------------------")
 print("SUBTOTAL: " + str(total_price))
